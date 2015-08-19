@@ -7,6 +7,8 @@ from paste import deploy
 import routes
 
 from wsgi_basic import controllers
+from wsgi_basic import routers
+from wsgi_basic.common import wsgi
 
 
 CONF = cfg.CONF
@@ -36,4 +38,10 @@ def fail_gracefully(f):
             sys.exit(1)
 
     return wrapper
+
+
+@fail_gracefully
+def public_version_app_factory(global_conf, **local_conf):
+    return wsgi.ComposingRouter(routes.Mapper(),
+                                [routers.Versions('public')])
 

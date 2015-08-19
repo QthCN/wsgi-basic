@@ -92,3 +92,31 @@ class UnexpectedError(SecurityError):
 class ConfigFileNotFound(UnexpectedError):
     debug_message_format = ("The Keystone configuration file %(config_file)s "
                             "could not be found.")
+
+
+class Unauthorized(SecurityError):
+    message_format = "The request you have made requires authentication."
+    code = 401
+    title = 'Unauthorized'
+
+
+class AuthPluginException(Unauthorized):
+    message_format = "Authentication plugin error."
+
+    def __init__(self, *args, **kwargs):
+        super(AuthPluginException, self).__init__(*args, **kwargs)
+        self.authentication = {}
+
+
+class ValidationError(Error):
+    message_format = ("Expecting to find %(attribute)s in %(target)s -"
+                       " the server could not comply with the request"
+                       " since it is either malformed or otherwise"
+                       " incorrect. The client is assumed to be in error.")
+    code = 400
+    title = 'Bad Request'
+
+class NotFound(Error):
+    message_format = "Could not find: %(target)s"
+    code = 404
+    title = 'Not Found'
