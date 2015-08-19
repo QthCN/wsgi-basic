@@ -116,7 +116,15 @@ class ValidationError(Error):
     code = 400
     title = 'Bad Request'
 
+
 class NotFound(Error):
     message_format = "Could not find: %(target)s"
     code = 404
     title = 'Not Found'
+
+
+class NotImplemented(Error):
+    message_format = ("The action you have requested has not"
+                    " been implemented.")
+    code = 501
+    title = 'Not Implemented'

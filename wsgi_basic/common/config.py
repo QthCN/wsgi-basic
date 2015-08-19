@@ -123,6 +123,21 @@ FILE_OPTIONS = {
                     deprecated_for_removal=True,
                     help='Require client certificate.'),
     ],
+    'token': [
+        cfg.IntOpt('expiration', default=3600,
+                   help='Amount of time a token should remain valid '
+                        '(in seconds).'),
+        cfg.StrOpt('provider',
+                   default='uuid',
+                   help='Controls the token construction, validation, and '
+                        'revocation operations. Entrypoint in the '
+                        'keystone.token.provider namespace. Core providers '
+                        'are [fernet|pkiz|pki|uuid].'),
+        cfg.StrOpt('driver',
+                   default='sql',
+                   help='Entrypoint for the token persistence backend driver '
+                        'in the keystone.token.persistence namespace.'),
+    ],
 }
 
 

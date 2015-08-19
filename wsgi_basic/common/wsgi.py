@@ -144,6 +144,7 @@ class Application(BaseApplication):
         params = self._normalize_dict(params)
 
         try:
+            print params
             result = method(context, **params)
         except exception.Unauthorized as e:
             LOG.warning(
