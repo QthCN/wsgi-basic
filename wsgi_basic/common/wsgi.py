@@ -177,11 +177,7 @@ class Application(BaseApplication):
                                method=req.environ['REQUEST_METHOD'])
 
     def _get_response_code(self, req):
-        req_method = req.environ['REQUEST_METHOD']
-        controller = importutils.import_class('keystone.common.controller')
         code = None
-        if isinstance(self, controller.V3Controller) and req_method == 'POST':
-            code = (201, 'Created')
         return code
 
     def _normalize_arg(self, arg):
@@ -281,6 +277,7 @@ class Application(BaseApplication):
             url = context['host_url']
 
         return url.rstrip('/')
+
 
 class Middleware(Application):
     """Base WSGI middleware.
@@ -412,7 +409,7 @@ class Router(object):
         """
         match = req.environ['wsgiorg.routing_args'][1]
         if not match:
-            msg = _('The resource could not be found.')
+            msg = 'The resource could not be found.'
             return render_exception(exception.NotFound(msg),
                                     request=req)
         app = match['controller']

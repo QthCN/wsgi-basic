@@ -41,6 +41,12 @@ def fail_gracefully(f):
 
 
 @fail_gracefully
+def public_app_factory(global_conf, **local_conf):
+    return wsgi.ComposingRouter(routes.Mapper(),
+                                [routers.Versions('public')])
+
+
+@fail_gracefully
 def public_version_app_factory(global_conf, **local_conf):
     return wsgi.ComposingRouter(routes.Mapper(),
                                 [routers.Versions('public')])

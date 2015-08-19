@@ -2,6 +2,7 @@ from oslo_log import log
 from oslo_serialization import jsonutils
 
 from wsgi_basic import exception
+from wsgi_basic.common import authorization
 
 
 LOG = log.getLogger(__name__)
