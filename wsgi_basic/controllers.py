@@ -1,0 +1,1 @@
+latest_app = None
