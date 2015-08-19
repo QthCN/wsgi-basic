@@ -82,7 +82,7 @@ def create_server(conf, name, host, port, workers):
     return name, ServerWrapper(server, workers)
 
 
-def run(possible_topdir, conf_dir="etc", conf_file="wsgi_basic.conf"):
+def run(possible_topdir, conf_dir="etc", conf_file="wsgi-basic.conf"):
     dev_conf = os.path.join(possible_topdir,
                             conf_dir,
                             conf_file)
