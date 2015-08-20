@@ -34,3 +34,8 @@ INSERT INTO USERS(name, role, password) VALUES("userA", "user", PASSWORD("111111
 -- Default policies
 INSERT INTO POLICIES(action, role, owner) VALUES("wsgi_basic:validate_token", "admin", 1);
 INSERT INTO POLICIES(action, role, owner) VALUES("wsgi_basic:delete_token", "admin", 1);
+INSERT INTO POLICIES(action, role, owner) VALUES("wsgi_basic:create_user", "admin", 0);
+INSERT INTO POLICIES(action, role, owner) VALUES("wsgi_basic:delete_user", "admin", 0);
+INSERT INTO POLICIES(action, role, owner) VALUES("wsgi_basic:update_user", "admin", 1);
+INSERT INTO POLICIES(action, role, owner) VALUES("wsgi_basic:get_user", "admin", 1);
+INSERT INTO POLICIES(action, role, owner) VALUES("wsgi_basic:get_users", "admin", 0);

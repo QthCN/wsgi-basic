@@ -48,10 +48,11 @@ class Token(Driver):
     def get_token(self, token_id):
         with DB() as db:
             db.execute("SELECT username FROM TOKENS "
-                       "WHERE token_id='{token_id}'".format(token_id=token_id))
+                       "WHERE token_id='{token_id}' "
+                       "AND expire_time > NOW()".format(token_id=token_id))
             data = db.fetchall()
             if len(data) == 0:
-                raise exception.TokenNotFound()
+                raise exception.TokenNotFound(token_id=token_id)
             user_info = data[0]
             db.execute("SELECT id, role FROM USERS WHERE "
                        "name='{username}'".format(
@@ -59,6 +60,6 @@ class Token(Driver):
             ))
             data = db.fetchall()
             user_info["role"] = data[0]["role"]
-            user_info["userid"] = data[0]["id"]
+            user_info["user_id"] = data[0]["id"]
             return user_info
 

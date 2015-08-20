@@ -10,6 +10,7 @@ from wsgi_basic import controllers
 from wsgi_basic import routers
 from wsgi_basic.common import wsgi
 from wsgi_basic.token import routers as token_routers
+from wsgi_basic.user import routers as user_routers
 
 
 CONF = cfg.CONF
@@ -45,6 +46,7 @@ def fail_gracefully(f):
 def public_app_factory(global_conf, **local_conf):
     return wsgi.ComposingRouter(routes.Mapper(),
                                 [token_routers.Router(),
+                                 user_routers.Router(),
                                  routers.Versions('public')])
 
 

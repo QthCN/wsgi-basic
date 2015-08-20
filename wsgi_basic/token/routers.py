@@ -3,6 +3,7 @@ from wsgi_basic.token import controllers
 
 
 class Router(wsgi.ComposableRouter):
+
     def add_routes(self, mapper):
         token_controller = controllers.Auth()
         mapper.connect('/tokens',
