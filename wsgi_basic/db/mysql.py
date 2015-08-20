@@ -40,8 +40,16 @@ class DB(object):
         try:
             if self.conn:
                 self.conn.commit()
+        except Exception as e:
+            LOG.exception(e)
+
+        try:
             if self.cursor:
                 self.cursor.close()
+        except Exception as e:
+            LOG.exception(e)
+
+        try:
             if self.conn:
                 self.conn.close()
         except Exception as e:

@@ -4,6 +4,7 @@ USE wsgi_basic;
 CREATE TABLE USERS(
   id INT NOT NULL AUTO_INCREMENT,
   name     VARCHAR(128)  NOT NULL UNIQUE,
+  role VARCHAR(128) NOT NULL,
   password VARCHAR(1024) NOT NULL,
   PRIMARY KEY (id),
   KEY (name)
@@ -18,4 +19,5 @@ CREATE TABLE TOKENS(
 );
 
 
-INSERT INTO USERS(name, password) VALUES("tianhuan", PASSWORD("111111"));
+INSERT INTO USERS(name, role, password) VALUES("tianhuan", "admin", PASSWORD("111111"));
+INSERT INTO USERS(name, role, password) VALUES("userA", "user", PASSWORD("111111"));

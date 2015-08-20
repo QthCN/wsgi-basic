@@ -52,5 +52,12 @@ class Token(Driver):
             data = db.fetchall()
             if len(data) == 0:
                 raise exception.NotFound(target="token")
-            return data[0]
+            user_info = data[0]
+            db.execute("SELECT role FROM USERS WHERE "
+                       "name='{username}'".format(
+                username=user_info["username"]
+            ))
+            data = db.fetchall()
+            user_info["role"] = data[0]["role"]
+            return user_info
 
