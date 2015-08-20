@@ -132,3 +132,19 @@ class NotImplemented(Error):
 
 class TokenNotFound(NotFound):
     message_format = "Could not find token: %(token_id)s"
+
+
+class PolicyNotFound(NotFound):
+    message_format = "Could not find policy: %(policy_id)s"
+
+
+class Forbidden(SecurityError):
+    message_format = ("You are not authorized to perform the"
+                      " requested action.")
+    code = 403
+    title = 'Forbidden'
+
+
+class ForbiddenAction(Forbidden):
+    message_format = ("You are not authorized to perform the"
+                      " requested action: %(action)s")

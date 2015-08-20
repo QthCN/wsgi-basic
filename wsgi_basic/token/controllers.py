@@ -18,8 +18,10 @@ class Auth(controller.V1Controller):
             return dict(token=token)
         raise exception.Unauthorized()
 
+    @controller.protected()
     def delete_token(self, context, token_id):
         self.token_api.delete_token(token_id)
 
+    @controller.protected()
     def validate_token(self, context, token_id):
         return self.token_api.get_token(token_id)

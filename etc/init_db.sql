@@ -18,6 +18,19 @@ CREATE TABLE TOKENS(
   PRIMARY KEY (token_id)
 );
 
+CREATE TABLE POLICIES(
+  id  INT NOT NULL AUTO_INCREMENT,
+  action VARCHAR(128) NOT NULL,
+  role VARCHAR(1024) DEFAULT "",
+  owner INT DEFAULT 0,
+  PRIMARY KEY (id),
+  KEY (action)
+);
 
+-- Test users
 INSERT INTO USERS(name, role, password) VALUES("tianhuan", "admin", PASSWORD("111111"));
 INSERT INTO USERS(name, role, password) VALUES("userA", "user", PASSWORD("111111"));
+
+-- Default policies
+INSERT INTO POLICIES(action, role, owner) VALUES("wsgi_basic:validate_token", "admin", 1);
+INSERT INTO POLICIES(action, role, owner) VALUES("wsgi_basic:delete_token", "admin", 1);

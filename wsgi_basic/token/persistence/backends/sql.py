@@ -51,13 +51,14 @@ class Token(Driver):
                        "WHERE token_id='{token_id}'".format(token_id=token_id))
             data = db.fetchall()
             if len(data) == 0:
-                raise exception.NotFound(target="token")
+                raise exception.TokenNotFound()
             user_info = data[0]
-            db.execute("SELECT role FROM USERS WHERE "
+            db.execute("SELECT id, role FROM USERS WHERE "
                        "name='{username}'".format(
                 username=user_info["username"]
             ))
             data = db.fetchall()
             user_info["role"] = data[0]["role"]
+            user_info["userid"] = data[0]["id"]
             return user_info
 

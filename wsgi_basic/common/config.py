@@ -146,6 +146,12 @@ FILE_OPTIONS = {
                    help='Entrypoint for the token persistence backend driver '
                         'in the keystone.token.persistence namespace.'),
     ],
+    'policy': [
+        cfg.StrOpt('driver',
+                   default='sql',
+                   help='Entrypoint for the policy backend driver in the '
+                        'wsgi_basic.policy namespace.'),
+    ],
     'mysql': [
         cfg.StrOpt('host',
                    default='127.0.0.1',
