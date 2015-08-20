@@ -505,21 +505,7 @@ def render_exception(error, context=None, request=None):
     headers = []
     if isinstance(error, exception.AuthPluginException):
         body['error']['identity'] = error.authentication
-    elif isinstance(error, exception.Unauthorized):
-        url = CONF.public_endpoint
-        if not url:
-            if request:
-                context = {'host_url': request.host_url}
-            if context:
-                url = Application.base_url(context, 'public')
-            else:
-                url = 'http://localhost:%d' % CONF.eventlet_server.public_port
-        else:
-            substitutions = dict(
-                itertools.chain(CONF.items(), CONF.eventlet_server.items()))
-            url = url % substitutions
 
-        headers.append(('WWW-Authenticate', 'wsgi-basic uri="%s"' % url))
     return render_response(status=(error.code, error.title),
                            body=body,
                            headers=headers)

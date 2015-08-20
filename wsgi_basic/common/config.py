@@ -134,7 +134,7 @@ FILE_OPTIONS = {
     'token': [
         cfg.IntOpt('expiration', default=3600,
                    help='Amount of time a token should remain valid '
-                        '(in seconds).'),
+                        '(in minutes).'),
         cfg.StrOpt('provider',
                    default='uuid',
                    help='Controls the token construction, validation, and '
@@ -145,6 +145,23 @@ FILE_OPTIONS = {
                    default='sql',
                    help='Entrypoint for the token persistence backend driver '
                         'in the keystone.token.persistence namespace.'),
+    ],
+    'mysql': [
+        cfg.StrOpt('host',
+                   default='127.0.0.1',
+                   help='MySQL DB host address.'),
+        cfg.IntOpt('port',
+                   default=3306,
+                   help='MySQL DB port.'),
+        cfg.StrOpt('username',
+                   default='root',
+                   help='MySQL DB user.'),
+        cfg.StrOpt('password',
+                   default='rootroot',
+                   help='MySQL DB password.'),
+        cfg.StrOpt('schema',
+                   default='wsgi_basic',
+                   help='MySQL DB default schema'),
     ],
 }
 

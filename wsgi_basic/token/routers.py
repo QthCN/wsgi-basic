@@ -9,3 +9,11 @@ class Router(wsgi.ComposableRouter):
                        controller=token_controller,
                        action='authenticate',
                        conditions=dict(method=['POST']))
+        mapper.connect('/tokens/{token_id}',
+                       controller=token_controller,
+                       action='delete_token',
+                       conditions=dict(method=['DELETE']))
+        mapper.connect('/tokens/{token_id}',
+                       controller=token_controller,
+                       action='validate_token',
+                       conditions=dict(method=['GET']))

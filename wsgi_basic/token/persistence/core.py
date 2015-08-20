@@ -27,6 +27,10 @@ class Driver(object):
     """Interface description for a Token driver."""
 
     @abc.abstractmethod
+    def validate_user(self, username, password):
+        raise exception.NotImplemented()
+
+    @abc.abstractmethod
     def create_token(self, token_id, data):
         raise exception.NotImplemented()
 
@@ -38,6 +42,3 @@ class Driver(object):
     def get_token(self, token_id):
         raise exception.NotImplemented()
 
-    @abc.abstractmethod
-    def clear_expired_tokens(self):
-        raise exception.NotImplemented()
