@@ -7,6 +7,14 @@ CONF = cfg.CONF
 # add file options here
 FILE_OPTIONS = {
     None: [
+        cfg.StrOpt('admin_token', secret=True, default='ADMIN',
+                   help='A "shared secret" that can be used to bootstrap '
+                        'Keystone. This "token" does not represent a user, '
+                        'and carries no explicit authorization. To disable '
+                        'in production (highly recommended), remove '
+                        'AdminTokenAuthMiddleware from your paste '
+                        'application pipelines (for example, in '
+                        'keystone-paste.ini).'),
         cfg.IntOpt('max_param_size', default=64,
                    help='Limit the sizes of user & project ID/names.'),
         # we allow tokens to be a bit larger to accommodate PKI

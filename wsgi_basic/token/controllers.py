@@ -6,6 +6,7 @@ from wsgi_basic.common import dependency
 class Auth(controller.V1Controller):
 
     def authenticate(self, context, auth=None):
+        print("in authenticate")
         print context
         print auth
         print self.token_api.get_token(1)

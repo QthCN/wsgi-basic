@@ -128,3 +128,7 @@ class NotImplemented(Error):
                     " been implemented.")
     code = 501
     title = 'Not Implemented'
+
+
+class TokenNotFound(NotFound):
+    message_format = "Could not find token: %(token_id)s"

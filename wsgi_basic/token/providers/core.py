@@ -28,11 +28,5 @@ class Driver(object):
     """Interface description for a Token provider."""
 
     @abc.abstractmethod
-    def get_token_id(self, token_data):
-        """Determine if the token should be persisted.
-
-        If the token provider requires that the token be persisted to a
-        backend this should return True, otherwise return False.
-
-        """
+    def gen_token_id(self, token_data):
         raise exception.NotImplemented()

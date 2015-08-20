@@ -95,6 +95,7 @@ class BaseApplication(object):
         raise NotImplementedError('You must implement __call__')
 
 
+@dependency.requires("token_api")
 class Application(BaseApplication):
 
     @webob.dec.wsgify()
@@ -144,7 +145,6 @@ class Application(BaseApplication):
         params = self._normalize_dict(params)
 
         try:
-            print params
             result = method(context, **params)
         except exception.Unauthorized as e:
             LOG.warning(
