@@ -1,23 +1,30 @@
+import ConfigParser
+
 import nose
 
 import wsgi_basic.tests.config as config
-from wsgi_basic.tests.utils import  HTTPClient
 
 
-def main(target_address="http://127.0.0.1:5000", admin_username="admin",
-         admin_password="password", username="user", password="password",
-         mysql_host="127.0.0.1", mysql_port=3306, mysql_user="root",
-         mysql_password="rootroot", mysql_schema="wsgi_basic"):
-    config.TARGET_SERVICE_ADDRESS = target_address
-    config.ADMIN_USERNAME = admin_username
-    config.ADMIN_PASSWORD = admin_password
-    config.USERNAME = username
-    config.PASSWORD = password
-    config.MYSQL_HOST = mysql_host
-    config.MYSQL_USER = mysql_user
-    config.MYSQL_PASSWORD = mysql_password
-    config.MYSQL_PORT = mysql_port
-    config.MYSQL_SCEHMA = mysql_schema
+config_file_path = "etc/test.ini"
+
+
+def init_config():
+    cf = ConfigParser.ConfigParser()
+    cf.read(config_file_path)
+    config.TARGET_SERVICE_ADDRESS = cf.get("test", "TARGET_SERVICE_ADDRESS")
+    config.ADMIN_USERNAME = cf.get("test", "ADMIN_USERNAME")
+    config.ADMIN_PASSWORD = cf.get("test", "ADMIN_PASSWORD")
+    config.USERNAME = cf.get("test", "USERNAME")
+    config.PASSWORD = cf.get("test", "PASSWORD")
+    config.MYSQL_HOST = cf.get("test", "MYSQL_HOST")
+    config.MYSQL_USER = cf.get("test", "MYSQL_USER")
+    config.MYSQL_PASSWORD = cf.get("test", "MYSQL_PASSWORD")
+    config.MYSQL_PORT = int(cf.get("test", "MYSQL_PORT"))
+    config.MYSQL_SCEHMA = cf.get("test", "MYSQL_SCEHMA")
+
+
+def main():
+    init_config()
     nose.main()
 
 
