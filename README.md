@@ -2,7 +2,7 @@
 
 ## 说明
 
-WSGI-BASIC从openstack/keystone中分离出wsgi相关代码，用于提供一个RESTful的HTTP API服务开发框架。
+WSGI-BASIC从openstack/keystone中分离出wsgi相关代码并根据需求进行相关方便开速开发的修改，其目的是用于提供一个可以提供RESTful的HTTP API服务开发框架。
 
 ## 配置文件生成
 
