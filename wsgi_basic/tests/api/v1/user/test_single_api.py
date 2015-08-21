@@ -66,3 +66,27 @@ class UserSingleAPITest(BaseTestCase):
         self.assertEqual(role, data["role"])
         self.assertEqual(username, data["name"])
         self.delete_user(content["user_id"])
+
+    def test_update_user(self):
+        username = "update_user_user"
+        password = "password"
+        role = "user"
+        response = self.create_user(username, password, role)
+        content = json.loads(response.content)
+        user_id = content["user_id"]
+        self.assertEqual(role, content["role"])
+        new_password = "new_password"
+        url = "{s}/v1/users/{i}".format(s=config.TARGET_SERVICE_ADDRESS,
+                                        i=content["user_id"])
+        payload = dict(password=new_password)
+        response = self.http_client.send_request_with_check(url, method="PUT",
+                                                            data=payload)
+        content = json.loads(response.content)
+        self.assertEqual(username, content["name"])
+        self.assertEqual(role, content["role"])
+        self.assertEqual(user_id, content["user_id"])
+        token = self.http_client.get_v1_token(username, password)
+        self.assertEqual(token, None)
+        token = self.http_client.get_v1_token(username, new_password)
+        self.assertNotEqual(token, None)
+        self.delete_user(user_id)

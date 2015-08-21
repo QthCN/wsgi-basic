@@ -22,7 +22,7 @@ class HTTPClient(object):
         elif method.upper() == "DELETE":
             response = requests.delete(url=url, data=data, headers=headers)
         elif method.upper() == "PUT":
-            response = requests.post(url=url, data=data, headers=headers)
+            response = requests.put(url=url, data=data, headers=headers)
 
         return response
 
@@ -38,7 +38,7 @@ class HTTPClient(object):
         response = self._send_request(url=url, headers=headers,
                                       data=payload, method="POST")
         content = json.loads(response.content)
-        return content.get("token", "")
+        return content.get("token", None)
 
     def send_request(self, url, headers=None, data=None, method="GET",
                      token_provided=False, admin_token=True):
