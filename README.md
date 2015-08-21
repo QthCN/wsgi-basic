@@ -106,3 +106,14 @@ MYSQL_SCEHMA = wsgi_basic
 #测试用例结果输出
 ......
 ```
+
+## 增加一个资源
+
+增加一个资源步骤如下：
+
+1. 建立对应的package，如resource
+2. 在resource这个package下建立routers.py/controllers.py/core.py。routers.py中用于存放URL到对应controller method的映射关系，controllers.py中存放控制层代码，core中提供model层代码。core可以决定是否要使用driver，如果要使用driver可以建立backends目录，并在setup.cfg中注册对应的entry point。
+3. 在wsgi_basic.server.backends中写上对应的DRIVER初始代码
+4. 在wsgi_basic.routers中写上加入新的resource的router规则
+
+强烈建议参考user这个资源的编写方法来进行新资源代码的开发。
