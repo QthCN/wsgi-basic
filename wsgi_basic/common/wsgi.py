@@ -45,12 +45,12 @@ class BaseApplication(object):
 
             [app:wadl]
             latest_version = 1.3
-            paste.app_factory = keystone.fancy_api:Wadl.factory
+            paste.app_factory = wsgi_basic.fancy_api:Wadl.factory
 
         which would result in a call to the `Wadl` class as
 
-            import keystone.fancy_api
-            keystone.fancy_api.Wadl(latest_version='1.3')
+            import wsgi_basic.fancy_api
+            wsgi_basic.fancy_api.Wadl(latest_version='1.3')
 
         You could of course re-implement the `factory` method in subclasses,
         but using the kwarg passing it shouldn't be necessary.
@@ -270,12 +270,12 @@ class Middleware(Application):
 
             [filter:analytics]
             redis_host = 127.0.0.1
-            paste.filter_factory = keystone.analytics:Analytics.factory
+            paste.filter_factory = wsgi_basic.analytics:Analytics.factory
 
         which would result in a call to the `Analytics` class as
 
-            import keystone.analytics
-            keystone.analytics.Analytics(app, redis_host='127.0.0.1')
+            import wsgi_basic.analytics
+            wsgi_basic.analytics.Analytics(app, redis_host='127.0.0.1')
 
         You could of course re-implement the `factory` method in subclasses,
         but using the kwarg passing it shouldn't be necessary.

@@ -102,7 +102,7 @@ class UnexpectedError(SecurityError):
 
 
 class ConfigFileNotFound(UnexpectedError):
-    debug_message_format = ("The Keystone configuration file %(config_file)s "
+    debug_message_format = ("The wsgi_basic configuration file %(config_file)s "
                             "could not be found.")
 
 

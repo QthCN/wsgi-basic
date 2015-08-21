@@ -19,12 +19,6 @@ class SmarterEncoder(jsonutils.json.JSONEncoder):
 
 
 def get_token_ref(context):
-    """Retrieves KeystoneToken object from the auth context and returns it.
-
-    :param dict context: The request context.
-    :raises: exception.Unauthorized if auth context cannot be found.
-    :returns: The KeystoneToken object.
-    """
     try:
         # Retrieve the auth context that was prepared by AuthContextMiddleware.
         auth_context = (context['environment']

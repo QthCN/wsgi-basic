@@ -9,12 +9,12 @@ FILE_OPTIONS = {
     None: [
         cfg.StrOpt('admin_token', secret=True, default='ADMIN',
                    help='A "shared secret" that can be used to bootstrap '
-                        'Keystone. This "token" does not represent a user, '
+                        'wsgi_basic. This "token" does not represent a user, '
                         'and carries no explicit authorization. To disable '
                         'in production (highly recommended), remove '
                         'AdminTokenAuthMiddleware from your paste '
                         'application pipelines (for example, in '
-                        'keystone-paste.ini).'),
+                        'wsgi-basic-paste.ini).'),
         cfg.IntOpt('max_param_size', default=64,
                    help='Limit the sizes of user & project ID/names.'),
         # we allow tokens to be a bit larger to accommodate PKI
@@ -139,12 +139,12 @@ FILE_OPTIONS = {
                    default='uuid',
                    help='Controls the token construction, validation, and '
                         'revocation operations. Entrypoint in the '
-                        'keystone.token.provider namespace. Core providers '
+                        'wsgi_basic.token.provider namespace. Core providers '
                         'are [fernet|pkiz|pki|uuid].'),
         cfg.StrOpt('driver',
                    default='sql',
                    help='Entrypoint for the token persistence backend driver '
-                        'in the keystone.token.persistence namespace.'),
+                        'in the wsgi_basic.token.persistence namespace.'),
     ],
     'policy': [
         cfg.StrOpt('driver',
