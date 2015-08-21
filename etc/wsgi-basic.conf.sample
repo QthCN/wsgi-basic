@@ -176,6 +176,13 @@
 # From wsgi_basic
 #
 
+# A "shared secret" that can be used to bootstrap Keystone. This "token" does
+# not represent a user, and carries no explicit authorization. To disable in
+# production (highly recommended), remove AdminTokenAuthMiddleware from your
+# paste application pipelines (for example, in keystone-paste.ini). (string
+# value)
+#admin_token = ADMIN
+
 # Limit the sizes of user & project ID/names. (integer value)
 #max_param_size = 64
 
@@ -479,6 +486,28 @@
 #ringfile = /etc/oslo/matchmaker_ring.json
 
 
+[mysql]
+
+#
+# From wsgi_basic
+#
+
+# MySQL DB host address. (string value)
+#host = 127.0.0.1
+
+# MySQL DB port. (integer value)
+#port = 3306
+
+# MySQL DB user. (string value)
+#username = root
+
+# MySQL DB password. (string value)
+#password = rootroot
+
+# MySQL DB default schema (string value)
+#schema = wsgi_basic
+
+
 [oslo_messaging_amqp]
 
 #
@@ -730,6 +759,11 @@
 # Deprecated group/name - [DEFAULT]/max_request_body_size
 #max_request_body_size = 114688
 
+# The HTTP Header that will be used to determine what the original request
+# protocol scheme was, even if it was hidden by an SSL termination proxy.
+# (string value)
+#secure_proxy_ssl_header = X-Forwarded-Proto
+
 
 [oslo_policy]
 
@@ -765,3 +799,33 @@
 # Name of the paste configuration file that defines the available pipelines.
 # (string value)
 #config_file = wsgi-basic-paste.ini
+
+
+[policy]
+
+#
+# From wsgi_basic
+#
+
+# Entrypoint for the policy backend driver in the wsgi_basic.policy namespace.
+# (string value)
+#driver = sql
+
+
+[token]
+
+#
+# From wsgi_basic
+#
+
+# Amount of time a token should remain valid (in minutes). (integer value)
+#expiration = 3600
+
+# Controls the token construction, validation, and revocation operations.
+# Entrypoint in the keystone.token.provider namespace. Core providers are
+# [fernet|pkiz|pki|uuid]. (string value)
+#provider = uuid
+
+# Entrypoint for the token persistence backend driver in the
+# keystone.token.persistence namespace. (string value)
+#driver = sql
