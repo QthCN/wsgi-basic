@@ -20,7 +20,7 @@ class Policy(Driver):
 
         target_roles = target_roles_str.split(":")
         if (credentials.get("role", None) in target_roles or
-                (target.get("user_id", -1) == credentials.get("user_id") and
-                 owner_is_ok is True)):
+            (long(target.get("user_id", -1)) == credentials.get("user_id") and
+             owner_is_ok is True)):
             return True
         raise exception.Unauthorized()

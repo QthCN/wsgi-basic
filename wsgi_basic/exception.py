@@ -138,6 +138,14 @@ class PolicyNotFound(NotFound):
     message_format = "Could not find policy: %(policy_id)s"
 
 
+class RoleNotFound(NotFound):
+    message_format = "Could not find correct role in request"
+
+
+class UserNotFound(NotFound):
+    message_format = "User with id %(user_id)s not found"
+
+
 class Forbidden(SecurityError):
     message_format = ("You are not authorized to perform the"
                       " requested action.")
@@ -148,3 +156,14 @@ class Forbidden(SecurityError):
 class ForbiddenAction(Forbidden):
     message_format = ("You are not authorized to perform the"
                       " requested action: %(action)s")
+
+
+class Conflict(Error):
+    message_format = ("Conflict occurred attempting to store %(type)s -"
+                      " %(details)s")
+    code = 409
+    title = 'Conflict'
+
+
+class UserAlreadyExist(Conflict):
+    message_format = "User %(name)s already exist"
