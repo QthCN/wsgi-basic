@@ -44,7 +44,7 @@ def serve(*servers):
         try:
             server.launch_with(launcher)
         except socket.error:
-            logging.exception(_("Failed to start the %(name)s server") % {
+            logging.exception("Failed to start the %(name)s server" % {
                 "name": name})
             raise
 
