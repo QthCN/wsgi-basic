@@ -48,6 +48,18 @@ class Error(Exception):
         return message
 
 
+class HTTPCodeError(Error):
+    message_format = "HTTP Code is %(code)d."
+    code = 400
+    title = 'HTTP'
+
+
+class HTTPContentError(Error):
+    message_format = "There is error in HTTP content, %(error)s."
+    code = 400
+    title = 'HTTP'
+
+
 class SecurityError(Error):
     """Avoids exposing details of security failures, unless in debug mode."""
     amendment = "(Disable debug mode to suppress these details.)"
