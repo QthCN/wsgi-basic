@@ -11,22 +11,8 @@ WSGI-BASIC从openstack/keystone中分离出wsgi相关代码并根据需求进行
 
 ```
 [stack@dev tmp]$ bash create_project.sh mywsgi MYWSGI
-create project mywsgi | MYWSGI
-Cloning into 'wsgi-basic'...
-remote: Counting objects: 281, done.
-remote: Compressing objects: 100% (221/221), done.
-remote: Total 281 (delta 142), reused 189 (delta 53), pack-reused 0
-Receiving objects: 100% (281/281), 69.43 KiB | 44.00 KiB/s, done.
-Resolving deltas: 100% (142/142), done.
-running develop
-running egg_info
-creating mywsgi.egg-info
-writing pbr to mywsgi.egg-info/pbr.json
-
+# 输出
 ......
-
-Using /usr/lib/python2.7/site-packages
-Finished processing dependencies for mywsgi==0.0.1.dev22
 [stack@dev tmp]$ cd mywsgi/
 [stack@dev mywsgi]$ mywsgi-all 
 2015-08-21 18:32:40.130 21762 INFO mywsgi.common.environment.eventlet_server [-] Starting /bin/mywsgi-all on 0.0.0.0:5000
