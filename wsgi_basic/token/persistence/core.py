@@ -41,3 +41,7 @@ class Driver(object):
     def get_token(self, token_id):
         raise exception.NotImplemented()
 
+    @abc.abstractmethod
+    def refresh_token_expiration_time(self, token_id):
+        raise exception.NotImplemented()
+

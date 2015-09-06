@@ -1,6 +1,11 @@
+from oslo_config import cfg
+
 from wsgi_basic import exception
 from wsgi_basic.common import controller
 from wsgi_basic.common import dependency
+
+
+CONF = cfg.CONF
 
 
 @dependency.requires("token_api", "token_provider_api")
@@ -24,4 +29,7 @@ class Auth(controller.V1Controller):
 
     @controller.protected()
     def validate_token(self, context, token_id):
-        return self.token_api.get_token(token_id)
+        ret = self.token_api.get_token(token_id)
+        if CONF.token.refresh_when_validate:
+            self.token_api.refresh_token_expiration_time(token_id)
+        return ret

@@ -135,6 +135,8 @@ FILE_OPTIONS = {
         cfg.IntOpt('expiration', default=3600,
                    help='Amount of time a token should remain valid '
                         '(in minutes).'),
+        cfg.BoolOpt('refresh_when_validate', default=True,
+                    help='Refresh token expiration time when validate it.'),
         cfg.StrOpt('provider',
                    default='uuid',
                    help='Controls the token construction, validation, and '

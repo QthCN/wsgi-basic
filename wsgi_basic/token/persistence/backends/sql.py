@@ -12,6 +12,17 @@ CONF = cfg.CONF
 
 class Token(Driver):
 
+    def refresh_token_expiration_time(self, token_id):
+        expire_time = datetime.datetime.now() + datetime.timedelta(
+            seconds=CONF.token.expiration
+        )
+        with DB() as db:
+            db.execute("UPDATE TOKENS SET expire_time='{t}' "
+                       "WHERE token_id='{i}'".format(
+                t=expire_time,
+                i=token_id
+            ))
+
     def validate_user(self, username, password):
         with DB() as db:
             db.execute("SELECT * FROM USERS WHERE name='{username}' "
